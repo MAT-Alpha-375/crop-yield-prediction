@@ -61,11 +61,11 @@ An AI-powered agricultural yield prediction system built with Streamlit and mult
 ```
 ├── app.py                 # Main Streamlit application
 ├── requirements.txt       # Python dependencies
-├── FinalDataset.csv      # Training dataset
-├── Catboost Model/       # CatBoost model files
-├── RF_Model/            # Random Forest model files
-├── XGboost Model/       # XGBoost model files
-└── README.md            # This file
+├── FinalDataset.csv       # Training dataset
+├── catboost_model/        # CatBoost model files
+├── rf_model/              # Random Forest model files
+├── xgb_model/             # XGBoost model files
+└── README.md              # This file
 ```
 
 ## 🎯 Usage
@@ -96,9 +96,9 @@ The `FinalDataset.csv` contains agricultural data including:
 ## 🔧 Configuration
 
 The application automatically loads pre-trained models from their respective directories. Ensure all model files are present:
-- `Catboost Model/catboost_yield_model.cbm`
-- `RF_Model/Yield_Prediction_RF_Model.pkl`
-- `XGboost Model/xgb_model.pkl`
+- `catboost_model/catboost_yield_model.cbm`
+- `rf_model/Yield_Prediction_rf_model.pkl`
+- `xgb_model/xgb_model.pkl`
 
 ## 🤝 Contributing
 

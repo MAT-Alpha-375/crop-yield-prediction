@@ -166,3 +166,6 @@ logs/
 *.temp
 temp/
 tmp/
+
+# init_git.py
+init_git.py

@@ -9,9 +9,9 @@ This document provides a detailed explanation of the Crop Yield Prediction App p
 crop-yield-prediction/
 ├── 📁 .github/                    # GitHub-specific configurations
 ├── 📁 .vscode/                    # VS Code editor settings
-├── 📁 Catboost Model/             # CatBoost machine learning model files
-├── 📁 RF_Model/                   # Random Forest model files
-├── 📁 XGboost Model/              # XGBoost model files
+├── 📁 catboost_model/             # CatBoost machine learning model files
+├── 📁 rf_model/                   # Random Forest model files
+├── 📁 xgb_model/                  # XGBoost model files
 ├── 📁 docs/                       # Project documentation
 ├── 📁 myenv/                      # Python virtual environment (excluded from Git)
 ├── 📁 tests/                      # Test files and test configuration
@@ -56,18 +56,18 @@ crop-yield-prediction/
 
 ### Machine Learning Models
 
-#### `Catboost Model/` Directory
+#### `catboost_model/` Directory
 - **Purpose**: Contains CatBoost gradient boosting model
 - **Files**:
   - `catboost_yield_model.cbm`: Trained CatBoost model file
 
-#### `RF_Model/` Directory
+#### `rf_model/` Directory
 - **Purpose**: Contains Random Forest model
 - **Files**:
-  - `Yield_Prediction_RF_Model.pkl`: Trained Random Forest model
+  - `Yield_Prediction_rf_model.pkl`: Trained Random Forest model
   - `model_columns.pkl`: Feature column names for the model
 
-#### `XGboost Model/` Directory
+#### `xgb_model/` Directory
 - **Purpose**: Contains XGBoost model
 - **Files**:
   - `xgb_model.pkl`: Trained XGBoost model

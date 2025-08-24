@@ -7,6 +7,12 @@ import shap
 from catboost import CatBoostRegressor, Pool
 import xgboost as xgb
 import matplotlib.pyplot as plt
+from matplotlib import cm
+
+
+cmap_viridis = cm.get_cmap("viridis")
+cmap_plasma = cm.get_cmap("plasma")
+cmap_cool = cm.get_cmap("cool")
 
 # Page configuration
 st.set_page_config(
@@ -261,7 +267,7 @@ def plot_contribution_chart(contribution_vals, input_encoded, method_used, model
     fig, ax = plt.subplots(figsize=(12, max(6, len(sorted_features) * 0.5)))
     
     # Create gradient colors
-    colors = plt.cm.viridis(np.linspace(0, 1, len(sorted_features)))
+    colors = cmap_viridis(np.linspace(0, 1, len(sorted_features)))
     
     bars = ax.barh(sorted_features, sorted_percentages, color=colors, alpha=0.8, edgecolor='white', linewidth=1)
     
@@ -319,10 +325,10 @@ with predict_col2:
             if model_choice == "Random Forest":
                 try:
                     # Load model and preprocessing tools
-                    model = joblib.load("RF_Model/Yield_Prediction_RF_Model.pkl")
-                    model_columns = joblib.load("RF_Model/model_columns.pkl")
+                    model = joblib.load("rf_model/Yield_Prediction_rf_model.pkl")
+                    model_columns = joblib.load("rf_model/model_columns.pkl")
                 except FileNotFoundError:
-                    st.error("Random Forest model files not found! Please ensure all model files are in the RF_Model directory.")
+                    st.error("Random Forest model files not found! Please ensure all model files are in the rf_model directory.")
                     st.stop()
                 
                 # One-hot encode inputs and align with training columns
@@ -352,7 +358,7 @@ with predict_col2:
             elif model_choice == "CatBoost":
                 # Load CatBoost model (handles raw inputs)
                 model = CatBoostRegressor()
-                model.load_model("E:\\Ulster\\MSC project\\Code\\Main ML Project\\Catboost Model\\catboost_yield_model.cbm")
+                model.load_model("catboost_model/catboost_yield_model.cbm")
 
                 # Predict directly
                 prediction = model.predict(input_df)[0]
@@ -379,7 +385,7 @@ with predict_col2:
                 # Modern plot styling
                 plt.style.use('default')
                 fig, ax = plt.subplots(figsize=(12, 6))
-                colors = plt.cm.plasma(np.linspace(0, 1, len(features)))
+                colors = cmap_plasma(np.linspace(0, 1, len(features)))
                 bars = ax.barh(features, percentages, color=colors, alpha=0.8, edgecolor='white', linewidth=1)
                 
                 ax.set_xlabel("Contribution to Yield Prediction (%)", fontsize=14, fontweight='bold', color='#333')
@@ -404,9 +410,9 @@ with predict_col2:
 
             elif model_choice == "XGBoost":
                 # Load XGBoost model and scaler
-                model = joblib.load("E:\\Ulster\\MSC project\\Code\\Main ML Project\\XGboost Model\\xgb_model.pkl")
-                scaler = joblib.load("E:\\Ulster\\MSC project\\Code\\Main ML Project\\XGboost Model\\scaler.pkl")
-                feature_columns = joblib.load("E:\\Ulster\\MSC project\\Code\\Main ML Project\\XGboost Model\\feature_columns.pkl")
+                model = joblib.load("xgb_model/xgb_model.pkl")
+                scaler = joblib.load("xgb_model/scaler.pkl")
+                feature_columns = joblib.load("xgb_model/feature_columns.pkl")
 
                  # One-hot encode and align columns
                 input_encoded = pd.get_dummies(input_df)
@@ -447,7 +453,7 @@ with predict_col2:
                 # Modern plot styling
                 plt.style.use('default')
                 fig, ax = plt.subplots(figsize=(12, max(6, len(sorted_features)*0.5)))
-                colors = plt.cm.cool(np.linspace(0, 1, len(sorted_features)))
+                colors = cmap_cool(np.linspace(0, 1, len(sorted_features)))
                 bars = ax.barh(sorted_features, sorted_percent, color=colors, alpha=0.8, edgecolor='white', linewidth=1)
                 
                 ax.set_xlabel("Contribution to Yield Prediction (%)", fontsize=14, fontweight='bold', color='#333')
