@@ -72,7 +72,7 @@ class TestModelLoading:
     def test_random_forest_model_exists(self) -> None:
         """Test that Random Forest model file exists"""
         paths = [
-            "rf_model/Yield_Prediction_rf_model.pkl",  # new path (snake_case)
+            "rf_model/Yield_Prediction_RF_Model.pkl",  # new path (snake_case)
             "rf_model/Yield_Prediction_rf_model.pkl",  # old path
         ]
         assert _exists_any(paths), f"RF model not found in any of: {paths}"
