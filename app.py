@@ -8,7 +8,7 @@ from catboost import CatBoostRegressor, Pool
 import xgboost as xgb
 import matplotlib.pyplot as plt
 from matplotlib import cm
-
+from typing import Any
 
 cmap_viridis = cm.get_cmap("viridis")
 cmap_plasma = cm.get_cmap("plasma")
