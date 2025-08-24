@@ -8,7 +8,8 @@ from catboost import CatBoostRegressor, Pool
 import xgboost as xgb
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from typing import Any
+from typing import Any, Tuple, Optional, Union
+from sklearn.ensemble import RandomForestRegressor
 
 cmap_viridis = cm.get_cmap("viridis")
 cmap_plasma = cm.get_cmap("plasma")
@@ -207,7 +208,7 @@ with summary_col4:
 with summary_col5:
     st.metric("Soil pH", ph_input, delta=None)
 
-def create_feature_importance_explanation(model, input_encoded, model_columns):
+def create_feature_importance_explanation(model: RandomForestRegressor, input_encoded: pd.DataFrame, model_columns: list) -> Tuple[Optional[np.ndarray], Optional[str]]:
     """
     Create feature contribution using Random Forest feature importance
     """
@@ -232,7 +233,7 @@ def create_feature_importance_explanation(model, input_encoded, model_columns):
         st.error(f"Feature importance calculation failed: {str(e)}")
         return None, None
 
-def plot_contribution_chart(contribution_vals, input_encoded, method_used, model_choice):
+def plot_contribution_chart(contribution_vals: np.ndarray, input_encoded: pd.DataFrame, method_used: str, model_choice: str) -> None:
     """
     Create and display feature contribution chart with modern styling
     """
@@ -350,7 +351,7 @@ with predict_col2:
                 # Create feature contribution explanation
                 contrib_vals, method_used = create_feature_importance_explanation(model, input_encoded, model_columns)
                 
-                if contrib_vals is not None:
+                if contrib_vals is not None and method_used is not None:
                     plot_contribution_chart(contrib_vals, input_encoded, method_used, model_choice)
                 else:
                     st.error("Could not generate feature contribution analysis.")
